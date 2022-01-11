@@ -4,6 +4,21 @@ import 'zk_key.dart';
 class ZkFilter {
   @protected
   Map controllers = <ZkValueKey, dynamic>{};
+
+  String? labelTextOf(ZkValueKey key) {
+    return key.value;
+  }
+
+  String? hintTextOf(ZkValueKey key) {
+    return key.value;
+  }
+
+  Icon? prefixIconOf(ZkValueKey key) {}
+
+  Future<int> login(String username, String password) async {
+    return 0;
+  }
+
   void onPressed(ZkValueKey? key) {
     if (null != key) {
       print(key.value);
