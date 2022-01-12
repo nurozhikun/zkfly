@@ -36,7 +36,7 @@ class _ZkLoginViewState extends State<ZkLoginView> {
         decoration: InputDecoration(
           // 标签
           labelText:
-              widget.filter?.labelTextOf(ZkValueKey.keyUsername) ?? "User Name",
+              widget.filter?.labelTextOf(ZkValueKey.keyUsername) ?? "UserName",
           // 提示
           hintText:
               widget.filter?.hintTextOf(ZkValueKey.keyUsername) ?? "username",
@@ -87,7 +87,8 @@ class _ZkLoginViewState extends State<ZkLoginView> {
                 widget.filter?.labelTextOf(ZkValueKey.keyLogin) ?? "login"),
             //回调函数
             onPressed: () async {
-              await widget.filter?.login(_nameCtrl.text, _pwdCtrl.text);
+              int re =
+                  await widget.filter?.login(_nameCtrl.text, _pwdCtrl.text);
             },
           ),
         ),

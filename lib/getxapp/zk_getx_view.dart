@@ -28,12 +28,3 @@ abstract class ZkGetfindView<F extends ZkGetxFilter> extends StatelessWidget
     controller.onPressed(zkValueKey);
   }
 }
-
-mixin ZkValueKeyMixin on Widget {
-  ZkValueKey? get zkValueKey {
-    if (key is ZkValueKey) {
-      return key as ZkValueKey;
-    }
-    return null;
-  }
-}

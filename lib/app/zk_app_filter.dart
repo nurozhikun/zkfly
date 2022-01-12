@@ -5,15 +5,15 @@ class ZkFilter {
   @protected
   Map controllers = <ZkValueKey, dynamic>{};
 
-  String? labelTextOf(ZkValueKey key) {
-    return key.value;
+  String? labelTextOf(ZkValueKey? key) {
+    return key?.value;
   }
 
-  String? hintTextOf(ZkValueKey key) {
-    return key.value;
+  String? hintTextOf(ZkValueKey? key) {
+    return key?.value;
   }
 
-  Icon? prefixIconOf(ZkValueKey key) {}
+  Icon? prefixIconOf(ZkValueKey? key) {}
 
   Future<int> login(String username, String password) async {
     return 0;

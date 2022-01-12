@@ -6,11 +6,15 @@ import 'package:zkfly/getxviews/zkgetx_pageview.dart';
 class ZkGetxFilter extends GetxController with ZkFilter {
   static ZkGetxFilter get to => Get.find();
   ZkGetxFilter();
-  @override
-  void onInit() {
-    super.onInit();
-    print("on init ...");
-  }
+  // @override
+  // void onInit() {
+  //   super.onInit();
+  // }
+
+  // @override
+  // void onClose() {
+  //   super.onClose();
+  // }
 
   @override
   ZkGetxPageController? pageControllerOf(ZkValueKey? key, {int initPage = 0}) {

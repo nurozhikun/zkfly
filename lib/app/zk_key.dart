@@ -10,3 +10,12 @@ class ZkValueKey extends ValueKey<String> {
   const ZkValueKey(String s, {this.filter}) : super(s);
   final ZkFilter? filter;
 }
+
+mixin ZkValueKeyMixin on Widget {
+  ZkValueKey? get zkValueKey {
+    if (key is ZkValueKey) {
+      return key as ZkValueKey;
+    }
+    return null;
+  }
+}
