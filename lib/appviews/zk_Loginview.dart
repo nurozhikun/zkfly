@@ -87,8 +87,7 @@ class _ZkLoginViewState extends State<ZkLoginView> {
                 widget.filter?.labelTextOf(ZkValueKey.keyLogin) ?? "login"),
             //回调函数
             onPressed: () async {
-              int re =
-                  await widget.filter?.login(_nameCtrl.text, _pwdCtrl.text);
+              await widget.filter?.login(_nameCtrl.text, _pwdCtrl.text);
             },
           ),
         ),
