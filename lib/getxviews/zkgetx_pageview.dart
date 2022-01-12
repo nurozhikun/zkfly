@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 // import 'package:zkfly/getxapp/zk_getx_filter.dart';
 import 'package:zkfly/getxapp/index.dart';
 
+// abstract class ZkGetx
+
 abstract class ZkGetxPageView<F extends ZkGetxFilter> extends ZkGetfindView<F> {
   final int itemCount;
   final int initPage;
