@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'zk_getx_storager.dart';
 import 'zk_getx_translations.dart';
 import 'package:zkfly/app/zk_app.dart';
+import 'zk_getx_httpapi.dart';
 
 class ZkGetxApp extends GetxController with ZkApp {
   static ZkGetxApp get to => Get.find();
@@ -28,8 +29,8 @@ class ZkGetxApp extends GetxController with ZkApp {
     await Get.putAsync(() => ZkGetxStorage().init(), permanent: true);
   }
 
-  // //can be override
-  // Future<void> putApis() async {}
+  //can be override
+  Future<void> putApis() async {}
 }
 
 class _GetxApp extends StatelessWidget {

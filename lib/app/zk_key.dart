@@ -5,9 +5,9 @@ class ZkValueKey extends ValueKey<String> {
   static const keyUsername = ZkValueKey("username");
   static const keyPassword = ZkValueKey("password");
   static const keyLogin = ZkValueKey("login");
-  static const keyMainRoute = ZkValueKey("zk_main_route");
-  static const keyHomeAppbar = ZkValueKey("zk_home_appbar");
-  static const keyLoginAppbar = ZkValueKey("zk_login_appbar");
+  static const keyHomeRoute = ZkValueKey("home_route");
+  static const keyHomeAppbar = ZkValueKey("home_appbar");
+  // static const keyLoginAppbar = ZkValueKey("login_appbar");
   // const ZkValueKey(String s) : super(s);
 
   const ZkValueKey(String s, {this.filter}) : super(s);
