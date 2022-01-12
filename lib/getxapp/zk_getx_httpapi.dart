@@ -3,7 +3,8 @@ import 'package:zkfly/app/index.dart';
 
 class ZkGetxHttpApi extends GetxService with ZkAppApi {
   static ZkGetxHttpApi get to => Get.find();
-  Future<void> init() async {
+  ZkGetxHttpApi() {
     Get.put<ZkGetxHttpApi>(this, permanent: true);
   }
+  Future<void> init() async {}
 }
