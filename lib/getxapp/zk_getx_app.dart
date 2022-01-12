@@ -7,6 +7,12 @@ import 'package:zkfly/app/zk_app.dart';
 
 class ZkGetxApp extends GetxController with ZkApp {
   static ZkGetxApp get to => Get.find();
+  void run(Widget home) async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await init();
+    runApp(_GetxApp(home: home));
+  }
+
   //can be override
   Future<void> init() async {
     Get.put<ZkGetxApp>(this, permanent: true);
@@ -22,11 +28,8 @@ class ZkGetxApp extends GetxController with ZkApp {
     await Get.putAsync(() => ZkGetxStorage().init(), permanent: true);
   }
 
-  void run(Widget home) async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await init();
-    runApp(_GetxApp(home: home));
-  }
+  // //can be override
+  // Future<void> putApis() async {}
 }
 
 class _GetxApp extends StatelessWidget {
