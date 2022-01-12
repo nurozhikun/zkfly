@@ -7,6 +7,12 @@ class ZkGetxFilter extends GetxController with ZkFilter {
   static ZkGetxFilter get to => Get.find();
   ZkGetxFilter();
   @override
+  void onInit() {
+    super.onInit();
+    print("on init ...");
+  }
+
+  @override
   ZkGetxPageController? pageControllerOf(ZkValueKey? key, {int initPage = 0}) {
     if (null == key) {
       return null;

@@ -4,7 +4,7 @@ import 'zk_getx_filter.dart';
 import 'package:zkfly/app/zk_key.dart';
 
 abstract class ZkGetputView<F extends ZkGetxFilter> extends StatelessWidget
-    with MixZkValueKey {
+    with ZkValueKeyMixin {
   final F controller;
   ZkGetputView({
     Key? key,
@@ -17,7 +17,7 @@ abstract class ZkGetputView<F extends ZkGetxFilter> extends StatelessWidget
 }
 
 abstract class ZkGetfindView<F extends ZkGetxFilter> extends StatelessWidget
-    with MixZkValueKey {
+    with ZkValueKeyMixin {
   final F controller = Get.find();
   ZkGetfindView({
     Key? key,
@@ -29,7 +29,7 @@ abstract class ZkGetfindView<F extends ZkGetxFilter> extends StatelessWidget
   }
 }
 
-mixin MixZkValueKey on Widget {
+mixin ZkValueKeyMixin on Widget {
   ZkValueKey? get zkValueKey {
     if (key is ZkValueKey) {
       return key as ZkValueKey;
