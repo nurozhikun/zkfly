@@ -9,6 +9,12 @@ class ZkGetxTranslations extends Translations {
   @override
   Map<String, Map<String, String>> get keys => _keys;
   void append(Map<String, Map<String, String>>? ex) {
-    ex?.forEach((String k, Map<String, String> v) {});
+    ex?.forEach((String k, Map<String, String> v) {
+      if (_keys.containsKey(k)) {
+        _keys[k]!.addAll(v);
+      } else {
+        _keys[k] = v;
+      }
+    });
   }
 }
