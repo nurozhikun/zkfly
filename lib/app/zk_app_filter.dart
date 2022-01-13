@@ -4,6 +4,20 @@ import 'zk_key.dart';
 class ZkFilter {
   @protected
   Map controllers = <ZkValueKey, dynamic>{};
+  @protected
+  Map<ZkValueKey, ZkKeyAction> actions = <ZkValueKey, ZkKeyAction>{};
+
+  ZkKeyAction actionOf(ZkValueKey key) =>
+      actions.putIfAbsent(key, () => ZkKeyAction());
+  ZkFilter insertOnPressed(ZkValueKey key, VoidCallback onPressed) {
+    actionOf(key).onPressedCallback = onPressed;
+    return this;
+  }
+
+  ZkFilter insertPrefixIconBuilder(ZkValueKey key, IconBuilder builder) {
+    actionOf(key).buildPrefixIcon = builder;
+    return this;
+  }
 
   String? labelTextOf(ZkValueKey? key) {
     return key?.value;
@@ -13,7 +27,9 @@ class ZkFilter {
     return key?.value;
   }
 
-  Icon? prefixIconOf(ZkValueKey? key) {}
+  Icon? prefixIconOf(ZkValueKey? key) {
+    return actions[key]?.prefixIcon;
+  }
 
   Future<int> login(String username, String password) async {
     return 0;
@@ -21,7 +37,7 @@ class ZkFilter {
 
   void onPressed(ZkValueKey? key) {
     if (null != key) {
-      print(key.value);
+      actionOf(key).onPressed();
     }
   }
 

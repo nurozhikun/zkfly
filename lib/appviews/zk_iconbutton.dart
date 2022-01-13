@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:zkfly/app/index.dart';
 
+Widget buildIconButton(ZkValueKey key, ZkFilter filter, Widget icon,
+    {EdgeInsetsGeometry padding = const EdgeInsets.all(8.0)}) {
+  return IconButton(
+    onPressed: () => filter.onPressed(key),
+    icon: icon,
+    padding: padding,
+  );
+}
+
 class ZkIconButton extends StatelessWidget with ZkValueKeyMixin {
   const ZkIconButton({
     Key? key,

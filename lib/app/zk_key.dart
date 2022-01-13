@@ -9,7 +9,6 @@ class ZkValueKey extends ValueKey<String> {
   static const keyHomeAppbar = ZkValueKey("home_appbar");
   // static const keyLoginAppbar = ZkValueKey("login_appbar");
   // const ZkValueKey(String s) : super(s);
-
   const ZkValueKey(String s, {this.filter}) : super(s);
   final ZkFilter? filter;
 }
@@ -21,4 +20,23 @@ mixin ZkValueKeyMixin on Widget {
     }
     return null;
   }
+}
+
+typedef VoidCallback = void Function();
+typedef IconBuilder = Icon? Function();
+
+class ZkKeyAction {
+  ZkKeyAction({
+    this.onPressedCallback,
+    this.buildPrefixIcon,
+  });
+  VoidCallback? onPressedCallback;
+  IconBuilder? buildPrefixIcon;
+  void onPressed() {
+    if (onPressedCallback != null) {
+      onPressedCallback!();
+    }
+  }
+
+  Icon? get prefixIcon => (buildPrefixIcon == null) ? null : buildPrefixIcon!();
 }
