@@ -1,7 +1,8 @@
 name: zkfly
-description: A new Flutter package project.
+description: A Flutter package of app, getxapp, net ....
 version: 0.0.1
 homepage:
+publish_to: none
 
 environment:
   sdk: ">=2.15.1 <3.0.0"
@@ -18,6 +19,7 @@ dependencies:
   # 本地存储
   shared_preferences: ^2.0.11
   dio: ^4.0.3
+  protobuf: ^2.0.0
 
 dev_dependencies:
   flutter_test:

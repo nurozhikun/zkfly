@@ -2,7 +2,7 @@ class ZkCmd {
   final int cmd;
   final String? str;
   final String? path;
-  const ZkCmd(this.cmd, {this.str, this.path);
+  const ZkCmd(this.cmd, {this.str, this.path});
 
   @override
   bool operator ==(Object other) {

@@ -4,6 +4,7 @@ export 'app/index.dart';
 export 'getxapp/index.dart';
 export 'getxviews/index.dart';
 export 'utils/index.dart';
+export 'net/index.dart';
 
 /// A Calculator.
 // class Calculator {
