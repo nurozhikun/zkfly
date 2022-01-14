@@ -5,6 +5,7 @@ import 'zk_getx_storager.dart';
 import 'zk_getx_translations.dart';
 import 'package:zkfly/app/zk_app.dart';
 import 'zk_getx_httpapi.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class ZkGetxApp extends GetxController with ZkApp {
   static ZkGetxApp get to => Get.find();
@@ -61,8 +62,16 @@ class _GetxApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       home: _RootHome(home),
       translations: Get.find<ZkGetxApp>().translations,
+      localizationsDelegates: const [
+        // RefreshLocalizations.delegate, //刷新后英文变中文
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      locale: const Locale('zh', 'CN'),
     );
   }
 }

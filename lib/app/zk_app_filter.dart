@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:zkfly/appviews/index.dart';
 import 'zk_key.dart';
 
 class ZkFilter {
@@ -16,6 +18,13 @@ class ZkFilter {
 
   ZkFilter insertPrefixIconBuilder(ZkValueKey key, IconBuilder builder) {
     actionOf(key).buildPrefixIcon = builder;
+    return this;
+  }
+
+  // navigationPage
+  ZkFilter insertNavigationPageBuilder(
+      ZkValueKey key, NavigationPageBuilder builder) {
+    actionOf(key).buildNavigationPage = builder;
     return this;
   }
 
@@ -47,6 +56,10 @@ class ZkFilter {
       () => PageController(initialPage: initPage),
     );
     return c;
+  }
+
+  List<Widget>? navigationPageOf(ZkValueKey? key) {
+    return actions[key]?.navigationPage;
   }
 
   void onPageChanged(ZkValueKey? key, int index) {}

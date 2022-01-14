@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  #  本地化
+  flutter_localizations:
+    sdk: flutter
   # getx
   get: ^4.6.1
   # 本地存储
