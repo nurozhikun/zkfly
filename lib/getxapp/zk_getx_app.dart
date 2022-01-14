@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:zkfly/model/index.dart';
 // import 'zk_getx_filter.dart';
 import 'zk_getx_storager.dart';
 import 'zk_getx_translations.dart';
@@ -27,9 +28,11 @@ class ZkGetxApp extends GetxController with ZkApp {
   Translations? get translations => ZkGetxTranslations(null);
   @protected
   Locale get local => const Locale('zh', 'CH');
+//获取本地存储：用户信息
 
   Future<void> _init() async {
     await storage?.init();
+    await UserModel().getUserInfo(); //获取本地存储：用户信息
     httpapi?.init();
   }
 

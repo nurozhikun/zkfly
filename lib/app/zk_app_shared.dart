@@ -22,4 +22,16 @@ class ZkShared {
   String getString(String key) {
     return _prefs.getString(key) ?? '';
   }
+
+  bool getBool(String key) {
+    return _prefs.getBool(key) ?? false;
+  }
+
+  List<String> getList(String key) {
+    return _prefs.getStringList(key) ?? [];
+  }
+
+  Future<bool> remove(String key) async {
+    return await _prefs.remove(key);
+  }
 }
