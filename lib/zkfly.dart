@@ -3,6 +3,7 @@ library zkfly;
 export 'app/index.dart';
 export 'getxapp/index.dart';
 export 'getxviews/index.dart';
+export 'utils/index.dart';
 
 /// A Calculator.
 // class Calculator {
