@@ -9,29 +9,48 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 class ZkGetxApp extends GetxController with ZkApp {
   static ZkGetxApp get to => Get.find();
+  ZkGetxApp() {
+    Get.put<ZkGetxApp>(this, permanent: true);
+  }
   void run(Widget home) async {
     WidgetsFlutterBinding.ensureInitialized();
-    await init();
+    await _init();
     runApp(_GetxApp(home: home));
   }
 
   //can be override
-  Future<void> init() async {
-    Get.put<ZkGetxApp>(this, permanent: true);
-    await putStorage();
+  @protected
+  ZkGetxStorage? get storage => ZkGetxStorage();
+  @protected
+  ZkGetxHttpApi? get httpapi => ZkGetxHttpApi();
+  @protected
+  Translations? get translations => ZkGetxTranslations(null);
+  @protected
+  Locale get local => const Locale('zh', 'CH');
+
+  Future<void> _init() async {
+    await storage?.init();
+    httpapi?.init();
   }
 
   // String get test => "in ZkGetxApp";
 
-  Translations get translations => ZkGetxTranslations(null);
-
   //can be override
-  Future<void> putStorage() async {
-    await Get.putAsync(() => ZkGetxStorage().init(), permanent: true);
+  Future<void> putStorage(ZkGetxStorage? storage) async {
+    if (null == storage) {
+      await Get.putAsync(() => ZkGetxStorage().init(), permanent: true);
+    } else {
+      Get.put<ZkGetxStorage>(storage, permanent: true);
+    }
   }
 
   //can be override
-  Future<void> putApis() async {}
+  Future<void> putHttpApis(ZkGetxHttpApi? api, {String? tag}) async {
+    if (api == null) {
+      return;
+    }
+    Get.put<ZkGetxHttpApi>(api, tag: tag, permanent: true);
+  }
 }
 
 class _GetxApp extends StatelessWidget {
@@ -43,6 +62,7 @@ class _GetxApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       home: _RootHome(home),
       translations: Get.find<ZkGetxApp>().translations,
       localizationsDelegates: const [

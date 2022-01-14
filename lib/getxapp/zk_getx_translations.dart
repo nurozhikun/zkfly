@@ -11,7 +11,7 @@ class ZkGetxTranslations extends Translations {
   void append(Map<String, Map<String, String>>? ex) {
     ex?.forEach((String k, Map<String, String> v) {
       if (_keys.containsKey(k)) {
-        _keys[k]!.addAll(v);
+        _keys[k]?.addAll(v);
       } else {
         _keys[k] = v;
       }

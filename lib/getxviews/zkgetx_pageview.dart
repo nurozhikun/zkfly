@@ -12,7 +12,7 @@ abstract class ZkGetxPageView<F extends ZkGetxFilter> extends ZkGetfindView<F> {
   ZkGetxPageView({
     Key? key,
     this.initPage = 0,
-    this.itemCount = 3,
+    this.itemCount = 4,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

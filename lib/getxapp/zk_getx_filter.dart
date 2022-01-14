@@ -15,6 +15,10 @@ class ZkGetxFilter extends GetxController with ZkFilter {
   // void onClose() {
   //   super.onClose();
   // }
+  @override
+  String? labelTextOf(ZkValueKey? key) {
+    return key?.value.tr;
+  }
 
   @override
   ZkGetxPageController? pageControllerOf(ZkValueKey? key, {int initPage = 0}) {
