@@ -1,4 +1,5 @@
 // import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ZkShared {
@@ -34,4 +35,7 @@ class ZkShared {
   Future<bool> remove(String key) async {
     return await _prefs.remove(key);
   }
+
+  ThemeData? get theme => null;
+  Locale? get local => const Locale('zh', 'CH');
 }

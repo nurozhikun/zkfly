@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:zkfly/model/index.dart';
 import 'zk_key.dart';
 
 class ZkFilter {
@@ -44,9 +43,9 @@ class ZkFilter {
 
   // 用户登录
   Future<int> login(String username, String password) async {
-    UserModel.singleton.saveUserInfo(jsonEncode(
-        {'username': 'admin', 'jwttoken': 'token', 'tel': '13757151027'}));
-    print(UserModel.singleton.getUserInfo());
+    // UserModel.singleton.saveUserInfo(jsonEncode(
+    //     {'username': 'admin', 'jwttoken': 'token', 'tel': '13757151027'}));
+    // print(UserModel.singleton.getUserInfo());
     return 0;
   }
 
@@ -64,7 +63,7 @@ class ZkFilter {
     return 0;
   }
 
-  void onPressed(ZkValueKey? key) {
+  void onPressed(ZkValueKey? key, {Map<String, dynamic>? params}) {
     print(key);
     if (null != key) {
       actionOf(key).onPressed();
