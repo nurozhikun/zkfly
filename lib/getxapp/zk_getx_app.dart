@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:zkfly/model/index.dart';
 import 'package:zkfly/styles/index.dart';
 import 'package:zkfly/zkfly.dart';
 // import 'zk_getx_filter.dart';
@@ -12,14 +11,15 @@ class ZkGetxApp extends GetxController with ZkApp {
     Get.put<ZkGetxApp>(this, permanent: true);
   }
 
-  late ThemeData theme;
   void run(Widget home) async {
     WidgetsFlutterBinding.ensureInitialized();
-    await _init();
+    await init();
     runApp(_GetxApp(home: home));
   }
 
   //can be override
+  // @protected
+  // ThemeData? get theme => null;
   @protected
   ZkGetxStorage? get storage => ZkGetxStorage();
   @protected
@@ -32,11 +32,10 @@ class ZkGetxApp extends GetxController with ZkApp {
   Locale get local => const Locale('zh', 'CH');
 
   //获取本地存储：用户信息
-  Future<void> _init() async {
+  Future<void> init() async {
     await storage?.init();
     await platform?.init();
-    UserModel().getUserInfo(); //获取本地存储：用户信息
-    onInitTheme();
+    // onInitTheme();
     httpapi?.init();
   }
 
@@ -61,15 +60,15 @@ class ZkGetxApp extends GetxController with ZkApp {
 
   /// 主题
   // 初始化
-  void onInitTheme() {
-    String code = ZkGetxStorage.to.getString(ZkValueKey.keyTheme.value);
-    if (code.isEmpty) {
-      ZkGetxStorage.to.setString(ZkValueKey.keyTheme.value, 'indigo');
-      theme = AppTheme.indigo;
-    } else {
-      theme = themeMap[code]!;
-    }
-  }
+  // void onInitTheme() {
+  //   String code = ZkGetxStorage.to.getString(ZkValueKey.keyTheme.value);
+  //   if (code.isEmpty) {
+  //     ZkGetxStorage.to.setString(ZkValueKey.keyTheme.value, 'indigo');
+  //     theme = AppTheme.indigo;
+  //   } else {
+  //     theme = themeMap[code]!;
+  //   }
+  // }
 
   // 更新
   void onThemeUpdate(ThemeData value) {
@@ -90,16 +89,16 @@ class _GetxApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: _RootHome(home),
-      translations: Get.find<ZkGetxApp>().translations,
+      translations: ZkGetxApp.to.translations,
       localizationsDelegates: const [
         // RefreshLocalizations.delegate, //刷新后英文变中文
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: ZkGetxApp.to.local,
+      locale: ZkGetxStorage.to.local, //ZkGetxApp.to.local,
       // theme
-      theme: ZkGetxApp.to.theme,
+      theme: ZkGetxStorage.to.theme,
     );
   }
 }

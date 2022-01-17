@@ -15,6 +15,7 @@ class ZkValueKey extends ValueKey<String> {
   static const keySettingsTapPage = ZkValueKey("settings_tap_page");
   static const keyTest = ZkValueKey("test");
   static const keyTheme = ZkValueKey("theme");
+  static const keyLocal = ZkValueKey("local");
   static const keyUsername = ZkValueKey("username");
   // static const keyLoginAppbar = ZkValueKey("login_appbar");
   // const ZkValueKey(String s) : super(s);
