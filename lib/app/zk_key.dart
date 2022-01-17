@@ -2,11 +2,19 @@ import 'package:flutter/material.dart';
 import 'zk_app_filter.dart';
 
 class ZkValueKey extends ValueKey<String> {
+  static const keyAreaServer = ZkValueKey("area_server");
   static const keyHomeRoute = ZkValueKey("home_route");
   static const keyHomeAppbar = ZkValueKey("home_appbar");
   static const keyLogin = ZkValueKey("login");
   static const keyMainPage = ZkValueKey("main_page");
+  static const keyMainServer = ZkValueKey("main_server");
   static const keyPassword = ZkValueKey("password");
+  static const keySave = ZkValueKey("save");
+  static const keySettings = ZkValueKey("settings");
+  static const keySettingsTap = ZkValueKey("settings_tap");
+  static const keySettingsTapPage = ZkValueKey("settings_tap_page");
+  static const keyTest = ZkValueKey("test");
+  static const keyTheme = ZkValueKey("theme");
   static const keyUsername = ZkValueKey("username");
   // static const keyLoginAppbar = ZkValueKey("login_appbar");
   // const ZkValueKey(String s) : super(s);
@@ -25,14 +33,14 @@ mixin ZkValueKeyMixin on Widget {
 
 typedef VoidCallback = void Function();
 typedef IconBuilder = Icon? Function();
-typedef NavigationPageBuilder = List<Widget>? Function();
+typedef WidgetListBuilder = List<Widget>? Function();
 
 class ZkKeyAction {
   ZkKeyAction(
-      {this.onPressedCallback, this.buildPrefixIcon, this.buildNavigationPage});
+      {this.onPressedCallback, this.buildPrefixIcon, this.buildWidgetList});
   VoidCallback? onPressedCallback;
   IconBuilder? buildPrefixIcon;
-  NavigationPageBuilder? buildNavigationPage;
+  WidgetListBuilder? buildWidgetList;
   void onPressed() {
     if (onPressedCallback != null) {
       onPressedCallback!();
@@ -42,6 +50,6 @@ class ZkKeyAction {
   Icon? get prefixIcon => (buildPrefixIcon == null) ? null : buildPrefixIcon!();
 
   // buildNavigationPage
-  List<Widget>? get navigationPage =>
-      (buildNavigationPage == null) ? null : buildNavigationPage!();
+  List<Widget>? get widgetList =>
+      (buildWidgetList == null) ? null : buildWidgetList!();
 }

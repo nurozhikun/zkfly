@@ -21,6 +21,9 @@ dependencies:
   dio: ^4.0.3
   protobuf: ^2.0.0
 
+  # 设备信息
+  device_info_plus: ^3.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -36,6 +36,7 @@ abstract class ZkGetxPageView<F extends ZkGetxFilter> extends ZkGetfindView<F> {
   Widget buildPage(BuildContext context, int page);
 }
 
+// BottomNavigationBar
 abstract class ZkGetxPageNavigationBar<F extends ZkGetxFilter>
     extends ZkGetfindView<F> {
   ZkGetxPageNavigationBar({Key? key}) : super(key: key);
@@ -61,6 +62,7 @@ abstract class ZkGetxPageNavigationBar<F extends ZkGetxFilter>
   @protected
   List<BottomNavigationBarItem> bottomBars(BuildContext context, int index);
 }
+// appBar_tabBar
 
 class ZkGetxPageController extends PageController {
   ZkGetxPageController({
