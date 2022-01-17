@@ -2,21 +2,35 @@ import 'package:flutter/material.dart';
 import 'zk_app_filter.dart';
 
 class ZkValueKey extends ValueKey<String> {
-  static const keyAreaServer = ZkValueKey("area_server");
+  // theme
+  static const keyTheme = ZkValueKey("theme");
+  static const keyThemeTeal = ZkValueKey("btn_theme_teal");
+  static const keyThemeIndigo = ZkValueKey("btn_theme_indigo");
+  static const keyThemePink = ZkValueKey("btn_theme_pink");
+
+  // home
   static const keyHomeRoute = ZkValueKey("home_route");
   static const keyHomeAppbar = ZkValueKey("home_appbar");
-  static const keyLogin = ZkValueKey("login");
   static const keyMainPage = ZkValueKey("main_page");
+
+  // server
+  static const keyAreaServer = ZkValueKey("area_server");
   static const keyMainServer = ZkValueKey("main_server");
+
+  // user
+  static const keyUsername = ZkValueKey("username");
   static const keyPassword = ZkValueKey("password");
-  static const keySave = ZkValueKey("save");
+  static const keyLogin = ZkValueKey("login");
+
+  // setting
   static const keySettings = ZkValueKey("settings");
   static const keySettingsTap = ZkValueKey("settings_tap");
   static const keySettingsTapPage = ZkValueKey("settings_tap_page");
+  static const keySave = ZkValueKey("save");
   static const keyTest = ZkValueKey("test");
-  static const keyTheme = ZkValueKey("theme");
+
+  // local
   static const keyLocal = ZkValueKey("local");
-  static const keyUsername = ZkValueKey("username");
   // static const keyLoginAppbar = ZkValueKey("login_appbar");
   // const ZkValueKey(String s) : super(s);
   const ZkValueKey(String s, {this.filter}) : super(s);
@@ -35,13 +49,18 @@ mixin ZkValueKeyMixin on Widget {
 typedef VoidCallback = void Function();
 typedef IconBuilder = Icon? Function();
 typedef WidgetListBuilder = List<Widget>? Function();
+typedef ThemeBuilder = ThemeData? Function();
 
 class ZkKeyAction {
   ZkKeyAction(
-      {this.onPressedCallback, this.buildPrefixIcon, this.buildWidgetList});
+      {this.onPressedCallback,
+      this.buildPrefixIcon,
+      this.buildWidgetList,
+      this.buildTheme});
   VoidCallback? onPressedCallback;
   IconBuilder? buildPrefixIcon;
   WidgetListBuilder? buildWidgetList;
+  ThemeBuilder? buildTheme;
   void onPressed() {
     if (onPressedCallback != null) {
       onPressedCallback!();
@@ -53,4 +72,7 @@ class ZkKeyAction {
   // buildNavigationPage
   List<Widget>? get widgetList =>
       (buildWidgetList == null) ? null : buildWidgetList!();
+
+  // 主题
+  ThemeData? get themeData => (buildTheme == null) ? null : buildTheme!();
 }

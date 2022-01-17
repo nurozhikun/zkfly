@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../zkfly.dart';
 import 'zk_key.dart';
 
 class ZkFilter {
@@ -22,9 +23,15 @@ class ZkFilter {
     return this;
   }
 
-  // navigationPage
+  // widgetList
   ZkFilter insertWidgetListBuilder(ZkValueKey key, WidgetListBuilder builder) {
     actionOf(key).buildWidgetList = builder;
+    return this;
+  }
+
+  // theme
+  ZkFilter insertThemeBuilder(ZkValueKey key, ThemeBuilder builder) {
+    actionOf(key).buildTheme = builder;
     return this;
   }
 
@@ -93,5 +100,24 @@ class ZkFilter {
           length: length, initialIndex: initialIndex, vsync: vsync),
     );
     return c;
+  }
+
+  // 主题
+  ThemeData? themeDataOf(ZkValueKey? key) {
+    return actions[key]?.themeData;
+  }
+
+  // 初始化主题
+  void onInitTheme() {
+    String code = ZkGetxStorage.to.getString(ZkValueKey.keyTheme.value);
+    print('*********************');
+    if (code.isEmpty) {
+      // theme = ZkGetxFilter.to.themeDataOf(ZkValueKey.keyThemeIndigo);
+      print(themeDataOf(ZkValueKey.keyThemeIndigo));
+      // setString(ZkValueKey.keyTheme.value, jsonEncode(theme));
+    } else {
+      // remove(ZkValueKey.keyTheme.value);
+      // theme = jsonDecode(code);
+    }
   }
 }

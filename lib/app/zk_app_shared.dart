@@ -1,6 +1,9 @@
 // import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zkfly/app/zk_key.dart';
+import 'package:zkfly/zkfly.dart';
 
 class ZkShared {
   late final SharedPreferences _prefs;
@@ -36,6 +39,9 @@ class ZkShared {
     return await _prefs.remove(key);
   }
 
-  ThemeData? get theme => null;
+  // 主题
+  ThemeData? theme;
+  ThemeData? get themeGet => theme;
+  set themeSet(ThemeData themeData) => theme = themeData;
   Locale? get local => const Locale('zh', 'CH');
 }
