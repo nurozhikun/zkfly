@@ -28,44 +28,45 @@ class _ZkServerFormState extends State<ZkServerForm> {
 
   List<Widget> _buildChildren() {
     return <Widget>[
-      TextFormField(
-        // 自动获取焦点
-        autofocus: widget.autofocus,
-        controller: _ipCtrl,
-        decoration: InputDecoration(
-          labelText: widget.filter?.labelTextOf(ZkValueKey.keyUsername) ?? "Ip",
-          hintText: widget.filter?.hintTextOf(ZkValueKey.keyUsername) ?? "ip",
-        ),
-      ),
-      TextFormField(
-        autofocus: false,
-        controller: _portCtrl,
-        decoration: InputDecoration(
-          labelText:
-              widget.filter?.labelTextOf(ZkValueKey.keyPassword) ?? "Port",
-          hintText: widget.filter?.hintTextOf(ZkValueKey.keyPassword) ?? "port",
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        child: TextFormField(
+          // 自动获取焦点
+          autofocus: widget.autofocus,
+          controller: _ipCtrl,
+          decoration: const InputDecoration(
+            labelText: "Ip",
+            hintText: "ip",
+          ),
         ),
       ),
       Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+        child: TextFormField(
+          autofocus: false,
+          controller: _portCtrl,
+          decoration: const InputDecoration(
+            labelText: "Port",
+            hintText: "port",
+          ),
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             elevatedButton(
                 widget.filter?.labelTextOf(ZkValueKey.keyTest) ?? 'btn',
                 true
-                    ? () => widget.filter?.onPressed(
-                        widget.key == ZkValueKey.keyMainServer
-                            ? ZkValueKey.keyMainServerTest
-                            : ZkValueKey.keyAreaServerTest)
+                    ? () => widget.filter?.serverTest(
+                        widget.key as ZkValueKey, _ipCtrl.text, _portCtrl.text)
                     : null),
             elevatedButton(
                 widget.filter?.labelTextOf(ZkValueKey.keySave) ?? 'btn',
                 true
-                    ? () => widget.filter?.onPressed(
-                        widget.key == ZkValueKey.keyMainServer
-                            ? ZkValueKey.keyMainServerSave
-                            : ZkValueKey.keyAreaServerSave)
+                    ? () => widget.filter?.serverSave(
+                        widget.key as ZkValueKey, _ipCtrl.text, _portCtrl.text)
                     : null),
           ],
         ),

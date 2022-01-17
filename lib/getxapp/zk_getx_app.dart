@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zkfly/model/index.dart';
+import 'package:zkfly/styles/index.dart';
+import 'package:zkfly/zkfly.dart';
 // import 'zk_getx_filter.dart';
-import 'zk_getx_storager.dart';
-import 'zk_getx_translations.dart';
-import 'package:zkfly/app/zk_app.dart';
-import 'zk_getx_httpapi.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class ZkGetxApp extends GetxController with ZkApp {
@@ -13,6 +11,8 @@ class ZkGetxApp extends GetxController with ZkApp {
   ZkGetxApp() {
     Get.put<ZkGetxApp>(this, permanent: true);
   }
+
+  late ThemeData theme;
   void run(Widget home) async {
     WidgetsFlutterBinding.ensureInitialized();
     await _init();
@@ -23,16 +23,20 @@ class ZkGetxApp extends GetxController with ZkApp {
   @protected
   ZkGetxStorage? get storage => ZkGetxStorage();
   @protected
+  ZkGetxPlatform? get platform => ZkGetxPlatform();
+  @protected
   ZkGetxHttpApi? get httpapi => ZkGetxHttpApi();
   @protected
   Translations? get translations => ZkGetxTranslations(null);
   @protected
   Locale get local => const Locale('zh', 'CH');
-//获取本地存储：用户信息
 
+  //获取本地存储：用户信息
   Future<void> _init() async {
     await storage?.init();
-    await UserModel().getUserInfo(); //获取本地存储：用户信息
+    await platform?.init();
+    UserModel().getUserInfo(); //获取本地存储：用户信息
+    onInitTheme();
     httpapi?.init();
   }
 
@@ -54,6 +58,25 @@ class ZkGetxApp extends GetxController with ZkApp {
     }
     Get.put<ZkGetxHttpApi>(api, tag: tag, permanent: true);
   }
+
+  /// 主题
+  // 初始化
+  void onInitTheme() {
+    String code = ZkGetxStorage.to.getString(ZkValueKey.keyTheme.value);
+    if (code.isEmpty) {
+      ZkGetxStorage.to.setString(ZkValueKey.keyTheme.value, 'indigo');
+      theme = AppTheme.indigo;
+    } else {
+      theme = themeMap[code]!;
+    }
+  }
+
+  // 更新
+  void onThemeUpdate(ThemeData value) {
+    Get.changeTheme(value);
+    ZkGetxStorage.to
+        .setString(ZkValueKey.keyTheme.value, mapKey<String>(themeMap, value));
+  }
 }
 
 class _GetxApp extends StatelessWidget {
@@ -74,7 +97,9 @@ class _GetxApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: const Locale('zh', 'CN'),
+      locale: ZkGetxApp.to.local,
+      // theme
+      theme: ZkGetxApp.to.theme,
     );
   }
 }
