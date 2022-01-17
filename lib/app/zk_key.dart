@@ -32,21 +32,34 @@ mixin ZkValueKeyMixin on Widget {
   }
 }
 
-typedef VoidCallback = void Function();
+typedef VoidCallback = void Function(Map<String, dynamic>? params);
 typedef IconBuilder = Icon? Function();
 typedef WidgetListBuilder = List<Widget>? Function();
 
 class ZkKeyAction {
-  ZkKeyAction(
-      {this.onPressedCallback, this.buildPrefixIcon, this.buildWidgetList});
-  VoidCallback? onPressedCallback;
+  ZkKeyAction({
+    this.onPressedCallback,
+    this.onValueChangedCallback,
+    this.buildPrefixIcon,
+    this.buildWidgetList,
+  });
+  Function? onPressedCallback;
+  Function? onValueChangedCallback;
   IconBuilder? buildPrefixIcon;
   WidgetListBuilder? buildWidgetList;
-  void onPressed() {
-    if (onPressedCallback != null) {
-      onPressedCallback!();
-    }
+
+  void insertOnPressLogin(Function(String user, String password) fn) {
+    onPressedCallback = fn;
   }
+
+  void insertOnValueChangedInt(Function(int i) fn) {
+    onValueChangedCallback = fn;
+  }
+
+  void onPressed(Map<String, dynamic>? params) =>
+      onPressedCallback?.call(params);
+
+  // void onValueChanged() => onValueChangedCallback?.call(null);
 
   Icon? get prefixIcon => (buildPrefixIcon == null) ? null : buildPrefixIcon!();
 

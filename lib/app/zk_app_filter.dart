@@ -12,20 +12,17 @@ class ZkFilter {
 
   ZkKeyAction actionOf(ZkValueKey key) =>
       actions.putIfAbsent(key, () => ZkKeyAction());
-  ZkFilter insertOnPressed(ZkValueKey key, VoidCallback onPressed) {
+  void insertOnPressed(ZkValueKey key, Function onPressed) {
     actionOf(key).onPressedCallback = onPressed;
-    return this;
   }
 
-  ZkFilter insertPrefixIconBuilder(ZkValueKey key, IconBuilder builder) {
+  void insertPrefixIconBuilder(ZkValueKey key, IconBuilder builder) {
     actionOf(key).buildPrefixIcon = builder;
-    return this;
   }
 
   // navigationPage
-  ZkFilter insertWidgetListBuilder(ZkValueKey key, WidgetListBuilder builder) {
+  void insertWidgetListBuilder(ZkValueKey key, WidgetListBuilder builder) {
     actionOf(key).buildWidgetList = builder;
-    return this;
   }
 
   String? labelTextOf(ZkValueKey? key) {
@@ -41,13 +38,13 @@ class ZkFilter {
     return actions[key]?.prefixIcon;
   }
 
-  // 用户登录
-  Future<int> login(String username, String password) async {
-    // UserModel.singleton.saveUserInfo(jsonEncode(
-    //     {'username': 'admin', 'jwttoken': 'token', 'tel': '13757151027'}));
-    // print(UserModel.singleton.getUserInfo());
-    return 0;
-  }
+  // // 用户登录
+  // Future<int> login(String username, String password) async {
+  //   // UserModel.singleton.saveUserInfo(jsonEncode(
+  //   //     {'username': 'admin', 'jwttoken': 'token', 'tel': '13757151027'}));
+  //   // print(UserModel.singleton.getUserInfo());
+  //   return 0;
+  // }
 
   // 服务器测试
   Future<int> serverTest(ZkValueKey? key, String ip, String port) async {
@@ -63,10 +60,18 @@ class ZkFilter {
     return 0;
   }
 
+  Function? funcOfPress(ZkValueKey? key) {
+    return (null != key) ? actionOf(key).onPressedCallback : null;
+  }
+
+  Function? funcOfChanged(ZkValueKey? key) {
+    return (null != key) ? actionOf(key).onValueChangedCallback : null;
+  }
+
   void onPressed(ZkValueKey? key, {Map<String, dynamic>? params}) {
     print(key);
     if (null != key) {
-      actionOf(key).onPressed();
+      actionOf(key).onPressed(params);
     }
   }
 

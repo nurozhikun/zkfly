@@ -7,11 +7,10 @@ class ZkGetxPlatform extends GetxService {
     Get.put<ZkGetxPlatform>(this, permanent: true);
   }
   RxString identifier = ''.obs;
-  @override
-  Future<ZkGetxPlatform> init() async {
+  // @override
+  Future<void> init() async {
     // 获取设备号
     identifier.value = await initPlatformState();
 
-    return this;
   }
 }

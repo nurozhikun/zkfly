@@ -7,7 +7,9 @@ import 'package:zkfly/getxviews/zkgetx_tabbar.dart';
 class ZkGetxFilter extends GetxController
     with ZkFilter, GetSingleTickerProviderStateMixin {
   static ZkGetxFilter get to => Get.find();
-  ZkGetxFilter();
+  ZkGetxFilter() {
+    _initActions();
+  }
   // @override
   // void onInit() {
   //   super.onInit();
@@ -45,5 +47,12 @@ class ZkGetxFilter extends GetxController
           length: length, initialIndex: initialIndex, vsync: vsync),
     );
     return c;
+  }
+
+  //init the default actions
+  void _initActions() {
+    // actionOf(ZkValueKey.keyLogin)
+    //   ..insertOnPressLogin((user, password) {})
+    //   ..insertOnValueChangedInt((i) => null);
   }
 }
