@@ -4,8 +4,6 @@ import 'package:zkfly/zkfly.dart';
 // import 'zk_getx_filter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'zk_getx_theme.dart';
-
 class ZkGetxApp extends GetxController with ZkApp {
   static ZkGetxApp get to => Get.find();
   ZkGetxApp() {
@@ -28,15 +26,12 @@ class ZkGetxApp extends GetxController with ZkApp {
   @protected
   Translations? get translations => ZkGetxTranslations(null);
   @protected
-  ZkGetxTheme? get theme => ZkGetxTheme(null);
-  @protected
   Locale get local => const Locale('zh', 'CH');
 
   //获取本地存储：用户信息
   Future<void> init() async {
     await storage?.init();
     await platform?.init();
-    await theme?.init();
 
     httpapi?.init();
   }
@@ -81,7 +76,7 @@ class _GetxApp extends StatelessWidget {
       ],
       locale: ZkGetxStorage.to.local, //ZkGetxApp.to.local,
       // theme
-      theme: ZkGetxStorage.to.themeGet,
+      theme: ZkGetxStorage.to.theme,
     );
   }
 }
