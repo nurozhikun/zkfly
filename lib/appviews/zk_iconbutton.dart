@@ -56,7 +56,7 @@ class ZkIconButton extends StatelessWidget with ZkValueKeyMixin {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        onPressed: () => filter?.onPressed(zkValueKey),
+        onPressed: () => filter?.funcOfPress(zkValueKey)?.call(),
         icon: icon,
         iconSize: iconSize,
         visualDensity: visualDensity,
