@@ -2,10 +2,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:zkfly/app/zk_key.dart';
-import 'package:zkfly/zkfly.dart';
 
 import '../zkfly.dart';
 

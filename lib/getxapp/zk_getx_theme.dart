@@ -5,27 +5,14 @@ import 'package:get/get.dart';
 
 import '../zkfly.dart';
 
-class ZkGetxTheme extends GetxService {
-  final _keys = <ZkValueKey, ThemeData>{};
+class ZkGetxTheme {
+  Map<ZkValueKey, ThemeData>? _keys = <ZkValueKey, ThemeData>{};
   ZkGetxTheme(Map<ZkValueKey, ThemeData>? ex) {
-    append(ex);
+    _keys = ex;
   }
-  Map<ZkValueKey, ThemeData> get getTheme => _keys;
-  void append(Map<ZkValueKey, ThemeData>? ex) {
-    print('**************************************');
-    print(ex);
-    // ex?.forEach((String, String> v) {
-    //   if (_keys.containsKey(k)) {
-    //     _keys[k]?.addAll(v);
-    //   } else {
-    //     _keys[k] = v;
-    //   }
-    // });
-  }
-
   @override
   Future<void> init() async {
-    print('object');
+    onInitTheme();
   }
 
   /// 主题
@@ -33,13 +20,15 @@ class ZkGetxTheme extends GetxService {
   void onInitTheme() {
     String code = ZkGetxStorage.to.getString(ZkValueKey.keyTheme.value);
     if (code.isEmpty) {
-      print('********************');
-      // print(ZkGetxFilter.to.actions);
+      print(_keys);
+      print(jsonEncode(_keys![ZkValueKey.keyThemeIndigo]));
+      // ZkGetxStorage.to.setString(ZkValueKey.keyTheme.value,
+      //     jsonEncode(_keys![ZkValueKey.keyThemeIndigo]));
       // setString(ZkValueKey.keyTheme.value,
       //     jsonEncode(ZkGetxFilter.to.themeDataOf(ZkValueKey.keyThemeIndigo)));
       // theme = ZkGetxFilter.to.themeDataOf(key);
     } else {
-      ZkGetxStorage.to.remove(ZkValueKey.keyTheme.value);
+      // ZkGetxStorage.to.remove(ZkValueKey.keyTheme.value);
       // theme = themeMap[code]!;
     }
   }
