@@ -52,11 +52,12 @@ typedef WidgetListBuilder = List<Widget>? Function();
 typedef ThemeBuilder = ThemeData? Function();
 
 class ZkKeyAction {
-  ZkKeyAction(
-      {this.onPressedCallback,
-      this.onValueChangedCallback,
-      this.buildPrefixIcon,
-      this.buildWidgetList});
+  ZkKeyAction({
+    this.onPressedCallback,
+    this.onValueChangedCallback,
+    this.buildPrefixIcon,
+    this.buildWidgetList,
+  });
   Function? onPressedCallback;
   Function? onValueChangedCallback;
   IconBuilder? buildPrefixIcon;

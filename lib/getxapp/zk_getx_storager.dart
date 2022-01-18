@@ -13,7 +13,8 @@ class ZkGetxStorage extends GetxService with ZkShared {
     Get.put<ZkGetxStorage>(this, permanent: true);
   }
   @override
-  Future<void> init() async {
+  Future<ZkGetxStorage> init() async {
     await super.init();
+    return this;
   }
 }

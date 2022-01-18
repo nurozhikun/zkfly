@@ -22,22 +22,20 @@ class ZkGetxApp extends GetxController with ZkApp {
   @protected
   ZkGetxStorage? get storage => ZkGetxStorage();
   @protected
-  ZkGetxPlatform? get platform => ZkGetxPlatform();
-  @protected
   ZkGetxHttpApi? get httpapi => ZkGetxHttpApi();
   @protected
   Translations? get translations => ZkGetxTranslations(null);
-  @protected
-  ZkGetxTheme? get theme => ZkGetxTheme(null);
-  @protected
-  Locale get local => const Locale('zh', 'CH');
+  @override
+  set themeIndex(int i) {
+    super.themeIndex = i;
+    if (null != theme) {
+      Get.changeTheme(theme!);
+    }
+  }
 
   //获取本地存储：用户信息
   Future<void> init() async {
     await storage?.init();
-    await platform?.init();
-    await theme?.init();
-
     httpapi?.init();
   }
 
@@ -46,10 +44,12 @@ class ZkGetxApp extends GetxController with ZkApp {
   //can be override
   Future<void> putStorage(ZkGetxStorage? storage) async {
     if (null == storage) {
-      await Get.putAsync(() => ZkGetxStorage().init(), permanent: true);
+      storage =
+          await Get.putAsync(() => ZkGetxStorage().init(), permanent: true);
     } else {
       Get.put<ZkGetxStorage>(storage, permanent: true);
     }
+    shared = storage;
   }
 
   //can be override
@@ -79,9 +79,9 @@ class _GetxApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: ZkGetxStorage.to.local, //ZkGetxApp.to.local,
+      locale: ZkGetxApp.to.local, //ZkGetxApp.to.local,
       // theme
-      theme: ZkGetxStorage.to.themeGet,
+      theme: ZkGetxApp.to.theme,
     );
   }
 }
