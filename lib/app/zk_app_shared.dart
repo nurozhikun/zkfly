@@ -1,4 +1,6 @@
 // import 'package:flutter/material.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,6 +24,18 @@ class ZkShared {
 
   String getString(String key) {
     return _prefs.getString(key) ?? '';
+  }
+
+  dynamic getJson(String key) {
+    var js = _prefs.getString(key);
+    if (null == js) {
+      return <String, dynamic>{};
+    }
+    try {
+      return jsonDecode(js);
+    } catch (_) {
+      return <String, dynamic>{};
+    }
   }
 
   bool getBool(String key) {
