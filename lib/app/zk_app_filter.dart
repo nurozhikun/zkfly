@@ -68,11 +68,8 @@ class ZkFilter {
     return (null != key) ? actionOf(key).onValueChangedCallback : null;
   }
 
-  void onPressed(ZkValueKey? key, {Map<String, dynamic>? params}) {
-    print(key);
-    if (null != key) {
-      actionOf(key).onPressed(params);
-    }
+  void onPressed(ZkValueKey? key) {
+    funcOfPress(key)?.call();
   }
 
   PageController? pageControllerOf(ZkValueKey? key, {int initPage = 0}) {
