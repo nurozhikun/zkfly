@@ -4,7 +4,6 @@ import 'package:zkfly/zkfly.dart';
 // import 'zk_getx_filter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'zk_getx_theme.dart';
 
 class ZkGetxApp extends GetxController with ZkApp {
   static ZkGetxApp get to => Get.find();
