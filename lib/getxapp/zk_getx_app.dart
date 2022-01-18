@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+<<<<<<< HEAD
 // import 'package:zkfly/styles/index.dart';
+=======
+>>>>>>> e6d88aadb0b27672bddc5a494cdba33298bd28ae
 import 'package:zkfly/zkfly.dart';
 // import 'zk_getx_filter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -20,8 +23,11 @@ class ZkGetxApp extends GetxController with ZkApp {
   }
 
   //can be override
+<<<<<<< HEAD
   @protected
   ZkGetxTheme? get theme => ZkGetxTheme(null);
+=======
+>>>>>>> e6d88aadb0b27672bddc5a494cdba33298bd28ae
   @protected
   ZkGetxStorage? get storage => ZkGetxStorage();
   @protected
@@ -37,7 +43,10 @@ class ZkGetxApp extends GetxController with ZkApp {
   Future<void> init() async {
     await storage?.init();
     await platform?.init();
+<<<<<<< HEAD
     await theme?.init();
+=======
+>>>>>>> e6d88aadb0b27672bddc5a494cdba33298bd28ae
     httpapi?.init();
   }
 

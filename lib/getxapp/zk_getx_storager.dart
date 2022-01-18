@@ -1,7 +1,9 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
-import 'package:zkfly/app/zk_app_shared.dart';
+import 'package:zkfly/app/index.dart';
+
+import 'zk_getx_filter.dart';
 
 import '../zkfly.dart';
 

@@ -2,7 +2,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:zkfly/app/zk_key.dart';
+import 'package:zkfly/zkfly.dart';
 
 import '../zkfly.dart';
 
@@ -52,8 +55,9 @@ class ZkShared {
     return await _prefs.remove(key);
   }
 
+  // 主题
   ThemeData? theme;
   ThemeData? get themeGet => theme;
-  set themeSet(ThemeData value) => theme = value;
+  set themeSet(ThemeData themeData) => theme = themeData;
   Locale? get local => const Locale('zh', 'CH');
 }
