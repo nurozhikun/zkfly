@@ -5,6 +5,8 @@ import 'package:zkfly/zkfly.dart';
 // import 'zk_getx_filter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'zk_getx_theme.dart';
+
 class ZkGetxApp extends GetxController with ZkApp {
   static ZkGetxApp get to => Get.find();
   ZkGetxApp() {
@@ -18,8 +20,8 @@ class ZkGetxApp extends GetxController with ZkApp {
   }
 
   //can be override
-  // @protected
-  // ThemeData? get theme => null;
+  @protected
+  ZkGetxTheme? get theme => ZkGetxTheme(null);
   @protected
   ZkGetxStorage? get storage => ZkGetxStorage();
   @protected
@@ -35,7 +37,7 @@ class ZkGetxApp extends GetxController with ZkApp {
   Future<void> init() async {
     await storage?.init();
     await platform?.init();
-    // onInitTheme();
+    await theme?.init();
     httpapi?.init();
   }
 
@@ -56,25 +58,6 @@ class ZkGetxApp extends GetxController with ZkApp {
       return;
     }
     Get.put<ZkGetxHttpApi>(api, tag: tag, permanent: true);
-  }
-
-  /// 主题
-  // 初始化
-  // void onInitTheme() {
-  //   String code = ZkGetxStorage.to.getString(ZkValueKey.keyTheme.value);
-  //   if (code.isEmpty) {
-  //     ZkGetxStorage.to.setString(ZkValueKey.keyTheme.value, 'indigo');
-  //     theme = AppTheme.indigo;
-  //   } else {
-  //     theme = themeMap[code]!;
-  //   }
-  // }
-
-  // 更新
-  void onThemeUpdate(ThemeData value) {
-    Get.changeTheme(value);
-    ZkGetxStorage.to
-        .setString(ZkValueKey.keyTheme.value, mapKey<String>(themeMap, value));
   }
 }
 
@@ -98,7 +81,7 @@ class _GetxApp extends StatelessWidget {
       ],
       locale: ZkGetxStorage.to.local, //ZkGetxApp.to.local,
       // theme
-      theme: ZkGetxStorage.to.theme,
+      theme: ZkGetxStorage.to.themeGet,
     );
   }
 }

@@ -25,11 +25,6 @@ class ZkFilter {
     actionOf(key).buildWidgetList = builder;
   }
 
-  // theme
-  void insertThemeBuilder(ZkValueKey key, ThemeBuilder builder) {
-    actionOf(key).buildTheme = builder;
-  }
-
   String? labelTextOf(ZkValueKey? key) {
     print(key?.value);
     return key?.value.tr;
@@ -103,10 +98,5 @@ class ZkFilter {
           length: length, initialIndex: initialIndex, vsync: vsync),
     );
     return c;
-  }
-
-  // 主题
-  ThemeData? themeDataOf(ZkValueKey? key) {
-    return actions[key]?.themeData;
   }
 }

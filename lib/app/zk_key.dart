@@ -49,7 +49,6 @@ mixin ZkValueKeyMixin on Widget {
 typedef VoidCallback = void Function(Map<String, dynamic>? params);
 typedef IconBuilder = Icon? Function();
 typedef WidgetListBuilder = List<Widget>? Function();
-typedef ThemeBuilder = ThemeData? Function();
 
 class ZkKeyAction {
   ZkKeyAction({
@@ -62,7 +61,6 @@ class ZkKeyAction {
   Function? onValueChangedCallback;
   IconBuilder? buildPrefixIcon;
   WidgetListBuilder? buildWidgetList;
-  ThemeBuilder? buildTheme;
 
   void insertOnPressLogin(Function(String user, String password) fn) {
     onPressedCallback = fn;
@@ -82,7 +80,4 @@ class ZkKeyAction {
   // buildNavigationPage
   List<Widget>? get widgetList =>
       (buildWidgetList == null) ? null : buildWidgetList!();
-
-  // 主题
-  ThemeData? get themeData => (buildTheme == null) ? null : buildTheme!();
 }

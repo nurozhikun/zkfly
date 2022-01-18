@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../zkfly.dart';
+
 class ZkShared {
   late final SharedPreferences _prefs;
   Future<void> init() async {
@@ -50,6 +52,8 @@ class ZkShared {
     return await _prefs.remove(key);
   }
 
-  ThemeData? get theme => null;
+  ThemeData? theme;
+  ThemeData? get themeGet => theme;
+  set themeSet(ThemeData value) => theme = value;
   Locale? get local => const Locale('zh', 'CH');
 }

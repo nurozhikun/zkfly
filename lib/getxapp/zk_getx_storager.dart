@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:zkfly/app/zk_app_shared.dart';
+
+import '../zkfly.dart';
 
 class ZkGetxStorage extends GetxService with ZkShared {
   static ZkGetxStorage get to => Get.find();

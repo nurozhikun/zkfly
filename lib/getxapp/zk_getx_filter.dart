@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:zkfly/getxviews/zkgetx_pageview.dart';
 import 'package:zkfly/getxviews/zkgetx_tabbar.dart';
 
+import '../zkfly.dart';
+
 class ZkGetxFilter extends GetxController
     with ZkFilter, GetSingleTickerProviderStateMixin {
   static ZkGetxFilter get to => Get.find();
