@@ -3,8 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../zkfly.dart';
+import 'index.dart';
 
 class ZkShared {
   late final SharedPreferences _prefs;
@@ -22,6 +21,10 @@ class ZkShared {
 
   Future<bool> setList(String key, List<String> value) async {
     return await _prefs.setStringList(key, value);
+  }
+
+  Future<bool> setInt(String key, int value) async {
+    return await _prefs.setInt(key, value);
   }
 
   String getString(String key) {
@@ -44,6 +47,10 @@ class ZkShared {
     return _prefs.getBool(key) ?? false;
   }
 
+  int getInt(String key) {
+    return _prefs.getInt(key) ?? 0;
+  }
+
   List<String> getList(String key) {
     return _prefs.getStringList(key) ?? [];
   }
@@ -53,8 +60,8 @@ class ZkShared {
   }
 
   // 主题
-  ThemeData? theme;
-  ThemeData? get themeGet => theme;
-  set themeSet(ThemeData themeData) => theme = themeData;
+  int get themeIndex => getInt(ZkValueKey.keyTheme.value);
+  set themeIndex(int i) => setInt(ZkValueKey.keyTheme.value, i);
+
   Locale? get local => const Locale('zh', 'CH');
 }

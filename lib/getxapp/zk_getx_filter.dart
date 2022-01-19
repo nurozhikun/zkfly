@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zkfly/app/index.dart';
 import 'package:get/get.dart';
-import 'package:zkfly/getxviews/zkgetx_pageview.dart';
-import 'package:zkfly/getxviews/zkgetx_tabbar.dart';
 
 import '../zkfly.dart';
 

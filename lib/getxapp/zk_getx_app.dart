@@ -20,32 +20,31 @@ class ZkGetxApp extends GetxController with ZkApp {
   @protected
   ZkGetxStorage? get storage => ZkGetxStorage();
   @protected
-  ZkGetxPlatform? get platform => ZkGetxPlatform();
-  @protected
   ZkGetxHttpApi? get httpapi => ZkGetxHttpApi();
   @protected
   Translations? get translations => ZkGetxTranslations(null);
+  @override
   @protected
   Locale get local => const Locale('zh', 'CH');
 
   //获取本地存储：用户信息
   Future<void> init() async {
-    await storage?.init();
-    await platform?.init();
-
+    shared = await storage?.init();
     httpapi?.init();
   }
 
   // String get test => "in ZkGetxApp";
 
   //can be override
-  Future<void> putStorage(ZkGetxStorage? storage) async {
-    if (null == storage) {
-      await Get.putAsync(() => ZkGetxStorage().init(), permanent: true);
-    } else {
-      Get.put<ZkGetxStorage>(storage, permanent: true);
-    }
-  }
+  // Future<void> putStorage(ZkGetxStorage? storage) async {
+  //   if (null == storage) {
+  //     storage =
+  //         await Get.putAsync(() => ZkGetxStorage().init(), permanent: true);
+  //   } else {
+  //     Get.put<ZkGetxStorage>(storage, permanent: true);
+  //   }
+  //   shared = storage;
+  // }
 
   //can be override
   Future<void> putHttpApis(ZkGetxHttpApi? api, {String? tag}) async {
@@ -57,7 +56,7 @@ class ZkGetxApp extends GetxController with ZkApp {
 }
 
 class _GetxApp extends StatelessWidget {
-  const _GetxApp({
+  _GetxApp({
     Key? key,
     required this.home,
   }) : super(key: key);
@@ -74,9 +73,9 @@ class _GetxApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: ZkGetxStorage.to.local, //ZkGetxApp.to.local,
+      locale: ZkGetxApp.to.local, //ZkGetxApp.to.local,
       // theme
-      theme: ZkGetxStorage.to.theme,
+      theme: ZkGetxApp.to.theme,
     );
   }
 }
