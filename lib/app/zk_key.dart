@@ -4,30 +4,18 @@ import 'zk_app_filter.dart';
 class ZkValueKey extends ValueKey<String> {
   // theme
   static const keyTheme = ZkValueKey("theme");
-  static const keyThemeTeal = ZkValueKey("btn_theme_teal");
-  static const keyThemeIndigo = ZkValueKey("btn_theme_indigo");
-  static const keyThemePink = ZkValueKey("btn_theme_pink");
+
+  // language
+  static const keyLanguage = ZkValueKey("language");
 
   // home
   static const keyHomeRoute = ZkValueKey("home_route");
   static const keyHomeAppbar = ZkValueKey("home_appbar");
-  static const keyMainPage = ZkValueKey("main_page");
-
-  // server
-  static const keyAreaServer = ZkValueKey("area_server");
-  static const keyMainServer = ZkValueKey("main_server");
 
   // user
   static const keyUsername = ZkValueKey("username");
   static const keyPassword = ZkValueKey("password");
   static const keyLogin = ZkValueKey("login");
-
-  // setting
-  static const keySettings = ZkValueKey("settings");
-  static const keySettingsTap = ZkValueKey("settings_tap");
-  static const keySettingsTapPage = ZkValueKey("settings_tap_page");
-  static const keySave = ZkValueKey("save");
-  static const keyTest = ZkValueKey("test");
 
   // local
   static const keyLocal = ZkValueKey("local");

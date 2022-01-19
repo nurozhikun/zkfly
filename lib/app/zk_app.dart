@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'index.dart';
-import 'package:get/get.dart';
 
-class ZkApp {
-  ThemeData? get theme {
-    // var i = (null == shared) ? 0 : shared!.themeIndex;
-    print("theme in zkapp");
-    int? i = shared?.themeIndex;
-    i ??= 0;
-    themeObs.value = i;
-    return themeOf(i);
-  }
-
-  set themeIndex(int i) => shared!.themeIndex = i;
-  RxInt themeObs = 0.obs;
-
-  ZkShared? get shared => null;
-  Locale get local => const Locale('zh', 'CH');
+abstract class ZkApp {
+  ZkShared get shared;
+  ZkHttpApi? get httpApi;
 
   @protected //override by children
-  ThemeData? themeOf(int i) => null;
+  ThemeData themeOf(int i);
+  @protected //override by children
+  Locale localeOf(int i);
+}
+
+mixin ZkAppMixin on ZkApp {
+  // 主题
+  ThemeData get theme => themeOf(shared.themeIndex);
+  set themeIndex(int i) => shared.themeIndex = i;
+  @override
+  ThemeData themeOf(int i) => ThemeData(
+        primarySwatch: Colors.indigo,
+      );
+
+  // 语言
+  Locale get locale => localeOf(shared.localeIndex);
+  set localeIndex(int i) => shared.localeIndex = i;
+  @override
+  Locale localeOf(int i) => const Locale('zh', 'CH');
 }

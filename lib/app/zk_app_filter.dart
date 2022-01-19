@@ -46,20 +46,6 @@ class ZkFilter {
   //   return 0;
   // }
 
-  // 服务器测试
-  Future<int> serverTest(ZkValueKey? key, String ip, String port) async {
-    print(ip + ':' + port);
-    if (key == ZkValueKey.keyMainServer) {
-    } else if (key == ZkValueKey.keyAreaServer) {}
-    return 0;
-  }
-
-  // 服务器保存
-  Future<int> serverSave(ZkValueKey? key, String ip, String port) async {
-    print(ip + ':' + port);
-    return 0;
-  }
-
   Function? funcOfPress(ZkValueKey? key) {
     return (null != key) ? actionOf(key).onPressedCallback : null;
   }

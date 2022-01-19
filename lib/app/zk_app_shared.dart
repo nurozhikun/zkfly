@@ -9,8 +9,6 @@ class ZkShared {
   late final SharedPreferences? _prefs;
   Future<void> init() async {
     _prefs = await SharedPreferences.getInstance();
-    // ThemeData theme;
-    // ThemeData.from(colorScheme: colorScheme)
   }
 
   Future<bool> setString(String key, String value) async {
@@ -65,5 +63,7 @@ class ZkShared {
   int get themeIndex => getInt(ZkValueKey.keyTheme.value);
   set themeIndex(int i) => setInt(ZkValueKey.keyTheme.value, i);
 
-  Locale? get local => const Locale('zh', 'CH');
+  // 语言
+  int get localeIndex => getInt(ZkValueKey.keyLocal.value);
+  set localeIndex(int i) => setInt(ZkValueKey.keyLocal.value, i);
 }

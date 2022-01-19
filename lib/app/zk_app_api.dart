@@ -1,3 +1,3 @@
 class ZkAppApi {}
 
-class ZkAppHttpApi {}
+class ZkHttpApi {}
