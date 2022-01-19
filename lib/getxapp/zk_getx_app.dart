@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:zkfly/zkfly.dart';
 // import 'zk_getx_filter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -51,19 +52,25 @@ class _GetxApp extends StatelessWidget {
   final Widget home;
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: _RootHome(home),
-      translations: ZkGetxApp.to.createTranslations,
-      localizationsDelegates: const [
-        // RefreshLocalizations.delegate, //刷新后英文变中文
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      locale: ZkGetxApp.to.local, //ZkGetxApp.to.local,
-      // theme
-      theme: ZkGetxApp.to.theme,
+    return RefreshConfiguration(
+      headerBuilder: () => const ClassicHeader(),
+      footerBuilder: () => const ClassicFooter(),
+      hideFooterWhenNotFull: true,
+      maxOverScrollExtent: 100,
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: _RootHome(home),
+        translations: ZkGetxApp.to.createTranslations,
+        localizationsDelegates: const [
+          // RefreshLocalizations.delegate, //刷新后英文变中文
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        locale: ZkGetxApp.to.local, //ZkGetxApp.to.local,
+        // theme
+        theme: ZkGetxApp.to.theme,
+      ),
     );
   }
 }
