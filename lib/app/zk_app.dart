@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'index.dart';
 
-class ZkApp {
-  ThemeData? get theme {
-    // var i = (null == shared) ? 0 : shared!.themeIndex;
-    print("theme in zkapp");
-    int? i = shared?.themeIndex;
-    i ??= 0;
-    return themeOf(i);
-  }
-
-  set themeIndex(int i) => shared!.themeIndex = i;
-
-  ZkShared? get shared => null;
+abstract class ZkApp {
+  ZkShared get shared;
+  ZkHttpApi? get httpApi;
   Locale get local => const Locale('zh', 'CH');
-
   @protected //override by children
-  ThemeData? themeOf(int i) => null;
+  ThemeData themeOf(int i);
+}
+
+mixin ZkAppMixin on ZkApp {
+  ThemeData get theme => themeOf(shared.themeIndex);
+  set themeIndex(int i) => shared.themeIndex = i;
+
+  @override
+  Locale get local => const Locale('zh', 'CH');
+  @override
+  ThemeData themeOf(int i) => ThemeData(
+        primarySwatch: Colors.indigo,
+      );
 }

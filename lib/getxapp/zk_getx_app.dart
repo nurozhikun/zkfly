@@ -4,7 +4,10 @@ import 'package:zkfly/zkfly.dart';
 // import 'zk_getx_filter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-class ZkGetxApp extends GetxController with ZkApp {
+abstract class _ZkGetxApp extends GetxController implements ZkApp {}
+
+class ZkGetxApp extends _ZkGetxApp with ZkAppMixin {
+// class ZkGetxApp extends GetxController implements ZkApp /* with ZkAppMixin  */ {
   static ZkGetxApp get to => Get.find();
   ZkGetxApp() {
     Get.put<ZkGetxApp>(this, permanent: true);
@@ -17,26 +20,26 @@ class ZkGetxApp extends GetxController with ZkApp {
   }
 
   @override
-  ZkShared? get shared => ZkGetxStorage.to;
+  ZkShared get shared => ZkGetxStorage.to;
+  @override
+  ZkHttpApi? get httpApi => ZkGetxHttpApi.to;
   //can be override
   @protected
-  ZkShared? get createStorage => ZkGetxStorage();
+  ZkGetxStorage get createStorage => ZkGetxStorage();
   @protected
-  ZkGetxHttpApi? get createHttpApi => ZkGetxHttpApi();
+  ZkGetxHttpApi get createHttpApi => ZkGetxHttpApi();
   @protected
   Translations? get createTranslations => ZkGetxTranslations();
   @override
   set themeIndex(int i) {
     super.themeIndex = i;
-    if (null != theme) {
-      Get.changeTheme(theme!);
-    }
+    Get.changeTheme(theme);
   }
 
   //获取本地存储：用户信息
   Future<void> init() async {
-    await createStorage?.init();
-    createHttpApi?.init();
+    await createStorage.init();
+    createHttpApi.init();
   }
 }
 
