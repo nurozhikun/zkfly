@@ -4,7 +4,6 @@ import 'package:zkfly/zkfly.dart';
 // import 'zk_getx_filter.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
 class ZkGetxApp extends GetxController with ZkApp {
   static ZkGetxApp get to => Get.find();
   ZkGetxApp() {
@@ -17,13 +16,15 @@ class ZkGetxApp extends GetxController with ZkApp {
     runApp(_GetxApp(home: home));
   }
 
+  @override
+  ZkShared? get shared => ZkGetxStorage.to;
   //can be override
   @protected
-  ZkGetxStorage? get storage => ZkGetxStorage();
+  ZkShared? get createStorage => ZkGetxStorage();
   @protected
-  ZkGetxHttpApi? get httpapi => ZkGetxHttpApi();
+  ZkGetxHttpApi? get createHttpApi => ZkGetxHttpApi();
   @protected
-  Translations? get translations => ZkGetxTranslations(null);
+  Translations? get createTranslations => ZkGetxTranslations();
   @override
   set themeIndex(int i) {
     super.themeIndex = i;
@@ -34,29 +35,8 @@ class ZkGetxApp extends GetxController with ZkApp {
 
   //获取本地存储：用户信息
   Future<void> init() async {
-    await storage?.init();
-    httpapi?.init();
-  }
-
-  // String get test => "in ZkGetxApp";
-
-  //can be override
-  Future<void> putStorage(ZkGetxStorage? storage) async {
-    if (null == storage) {
-      storage =
-          await Get.putAsync(() => ZkGetxStorage().init(), permanent: true);
-    } else {
-      Get.put<ZkGetxStorage>(storage, permanent: true);
-    }
-    shared = storage;
-  }
-
-  //can be override
-  Future<void> putHttpApis(ZkGetxHttpApi? api, {String? tag}) async {
-    if (api == null) {
-      return;
-    }
-    Get.put<ZkGetxHttpApi>(api, tag: tag, permanent: true);
+    await createStorage?.init();
+    createHttpApi?.init();
   }
 }
 
@@ -71,7 +51,7 @@ class _GetxApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       home: _RootHome(home),
-      translations: ZkGetxApp.to.translations,
+      translations: ZkGetxApp.to.createTranslations,
       localizationsDelegates: const [
         // RefreshLocalizations.delegate, //刷新后英文变中文
         GlobalMaterialLocalizations.delegate,

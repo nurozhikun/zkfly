@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 class ZkGetxTranslations extends Translations {
   final _keys = <String, Map<String, String>>{};
-  ZkGetxTranslations(Map<String, Map<String, String>>? ex) {
+  ZkGetxTranslations([Map<String, Map<String, String>>? ex]) {
     append(ex);
   }
   @override
