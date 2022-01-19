@@ -64,8 +64,6 @@ class ZkShared {
   // 主题
   int get themeIndex => getInt(ZkValueKey.keyTheme.value);
   set themeIndex(int i) => setInt(ZkValueKey.keyTheme.value, i);
-  // ThemeData? theme;
-  // ThemeData? get themeGet => theme;
-  // set themeSet(ThemeData themeData) => theme = themeData;
+
   Locale? get local => const Locale('zh', 'CH');
 }
