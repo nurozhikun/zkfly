@@ -17,6 +17,13 @@ class _ZkLoginViewState extends State<ZkLoginView> {
   final _nameCtrl = TextEditingController();
   final _pwdCtrl = TextEditingController();
   @override
+  void dispose() {
+    _nameCtrl.dispose();
+    _pwdCtrl.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Form(
       key: _formKey,
