@@ -36,18 +36,6 @@ class ZkGetxFilter extends GetxController
     return c;
   }
 
-  // tabController
-  @override
-  ZkGetxTabController? tabControllerOf(ZkValueKey? key,
-      {int length = 3, int initialIndex = 0, required TickerProvider vsync}) {
-    var c = controllers.putIfAbsent(
-      key,
-      () => ZkGetxTabController(
-          length: length, initialIndex: initialIndex, vsync: vsync),
-    );
-    return c;
-  }
-
   //init the default actions
   void _initActions() {
     // actionOf(ZkValueKey.keyLogin)

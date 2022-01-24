@@ -37,6 +37,7 @@ class _ZkLoginViewState extends State<ZkLoginView> {
   List<Widget> _buildChildren() {
     return <Widget>[
       TextFormField(
+        enabled: widget.key == ZkValueKey.keyLogin,
         // 自动获取焦点
         autofocus: widget.autofocus,
         controller: _nameCtrl,
@@ -95,10 +96,15 @@ class _ZkLoginViewState extends State<ZkLoginView> {
             //回调函数
             onPressed: () async {
               // await widget.filter?.login(_nameCtrl.text, _pwdCtrl.text);
-              widget.filter
-                  ?.actionOf(ZkValueKey.keyLogin)
-                  .onPressedCallback
-                  ?.call(_nameCtrl.text, _pwdCtrl.text);
+              try {
+                widget.filter
+                    ?.actionOf(ZkValueKey.keyLogin)
+                    .onPressedCallback
+                    ?.call(_nameCtrl.text, _pwdCtrl.text);
+              } catch (e) {
+                print(e);
+              }
+              // ImsBeeAction
             },
           ),
         ),

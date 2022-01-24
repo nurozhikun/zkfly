@@ -26,7 +26,6 @@ class ZkFilter {
   }
 
   String? labelTextOf(ZkValueKey? key) {
-    print(key?.value);
     return key?.value.tr;
   }
 
@@ -71,15 +70,4 @@ class ZkFilter {
   }
 
   void onPageChanged(ZkValueKey? key, int index) {}
-
-  // tabController
-  TabController? tabControllerOf(ZkValueKey? key,
-      {int length = 3, int initialIndex = 0, required TickerProvider vsync}) {
-    var c = controllers.putIfAbsent(
-      key,
-      () => TabController(
-          length: length, initialIndex: initialIndex, vsync: vsync),
-    );
-    return c;
-  }
 }
