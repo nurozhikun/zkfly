@@ -68,7 +68,7 @@ class _GetxApp extends StatelessWidget {
         home: _RootHome(home),
         translations: ZkGetxApp.to.createTranslations,
         localizationsDelegates: const [
-          // RefreshLocalizations.delegate, //刷新后英文变中文
+          RefreshLocalizations.delegate, //刷新后英文变中文
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,

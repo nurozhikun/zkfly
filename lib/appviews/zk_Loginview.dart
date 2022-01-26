@@ -12,7 +12,7 @@ class ZkLoginView extends StatefulWidget {
 }
 
 class _ZkLoginViewState extends State<ZkLoginView> {
-  final GlobalKey _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _showPwd = false;
   final _nameCtrl = TextEditingController();
   final _pwdCtrl = TextEditingController();
@@ -37,6 +37,7 @@ class _ZkLoginViewState extends State<ZkLoginView> {
   List<Widget> _buildChildren() {
     return <Widget>[
       TextFormField(
+        validator: validateUserName,
         enabled: widget.key == ZkValueKey.keyLogin,
         // 自动获取焦点
         autofocus: widget.autofocus,
@@ -54,6 +55,7 @@ class _ZkLoginViewState extends State<ZkLoginView> {
         ),
       ),
       TextFormField(
+        validator: validatePassWord,
         autofocus: false,
         controller: _pwdCtrl,
         decoration: InputDecoration(
@@ -95,15 +97,13 @@ class _ZkLoginViewState extends State<ZkLoginView> {
                 widget.filter?.labelTextOf(ZkValueKey.keyLogin) ?? "login"),
             //回调函数
             onPressed: () async {
-              // await widget.filter?.login(_nameCtrl.text, _pwdCtrl.text);
-              try {
+              if (_formKey.currentState!.validate()) {
                 widget.filter
                     ?.actionOf(ZkValueKey.keyLogin)
                     .onPressedCallback
                     ?.call(_nameCtrl.text, _pwdCtrl.text);
-              } catch (e) {
-                print(e);
               }
+
               // ImsBeeAction
             },
           ),
@@ -111,4 +111,24 @@ class _ZkLoginViewState extends State<ZkLoginView> {
       ),
     ];
   }
+}
+
+String? validateUserName(value) {
+  RegExp exp = RegExp(r'^[\u4e00-\u9fa5 A-Z a-z 0-9 _]{3,8}$');
+  if (value.isEmpty) {
+    return '用户名不能为空!';
+  } else if (!exp.hasMatch(value.trim())) {
+    return '请输入3到8位中文、数字、字母、下划线';
+  }
+  return null;
+}
+
+// 密码
+String? validatePassWord(value) {
+  if (value.isEmpty) {
+    return '密码不能为空';
+  } else if (value.trim().length < 6 || value.trim().length > 18) {
+    return '密码长度需大于等于6位';
+  }
+  return null;
 }
