@@ -10,6 +10,7 @@ abstract class _ZkGetxApp extends GetxController implements ZkApp {}
 class ZkGetxApp extends _ZkGetxApp with ZkAppMixin {
 // class ZkGetxApp extends GetxController implements ZkApp /* with ZkAppMixin  */ {
   static ZkGetxApp get to => Get.find();
+  @mustCallSuper
   ZkGetxApp() {
     Get.put<ZkGetxApp>(this, permanent: true);
   }
@@ -44,6 +45,7 @@ class ZkGetxApp extends _ZkGetxApp with ZkAppMixin {
   }
 
   //获取本地存储：用户信息
+  @mustCallSuper
   Future<void> init() async {
     await createStorage.init();
     createHttpApi.init();
@@ -65,7 +67,7 @@ class _GetxApp extends StatelessWidget {
       maxOverScrollExtent: 100,
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: _RootHome(home),
+        home: home, //_RootHome(home),
         translations: ZkGetxApp.to.createTranslations,
         localizationsDelegates: const [
           RefreshLocalizations.delegate, //刷新后英文变中文
@@ -81,12 +83,12 @@ class _GetxApp extends StatelessWidget {
   }
 }
 
-class _RootHome extends StatelessWidget {
-  const _RootHome(this.home);
-  final Widget home;
-  @override
-  Widget build(BuildContext context) {
-    // ZkShared.initMedia(context);
-    return home;
-  }
-}
+// class _RootHome extends StatelessWidget {
+//   const _RootHome(this.home);
+//   final Widget home;
+//   @override
+//   Widget build(BuildContext context) {
+//     // ZkShared.initMedia(context);
+//     return home;
+//   }
+// }
