@@ -45,10 +45,12 @@ class ZkFilter {
   //   return 0;
   // }
 
+  //onPressedCallback 如果有参数，需要调用这个函数
   Function? funcOfPress(ZkValueKey? key) {
     return (null != key) ? actionOf(key).onPressedCallback : null;
   }
 
+  //onValueChangedCallback 如果有参数，需要调用这个函数
   Function? funcOfChanged(ZkValueKey? key) {
     return (null != key) ? actionOf(key).onValueChangedCallback : null;
   }

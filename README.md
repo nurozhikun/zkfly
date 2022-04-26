@@ -11,8 +11,14 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+app:
+- zk_app:(ZkApp)作为整个GUI的基类，一个进程只能有一个对象；
+- zk_app_filter:(ZkFilter)是对Widget的状态和动作的封装，一个widget关联一个，多个widget可以共享一个，一个进程可以有多个对象
+- zk_app_shared:(ZkShared)是对本地需要持久化存储的共享数据封装，一个进程也只需要一个对象
+- zk_app_api:app内部会用到的各种独立App封装；(ZkHttpApi)是对Http客户端模块的封装，一个进程只需要一个对象
+- zk_key:app内部的常用键值定义
+getxapp:
+- zk_getx_app:(ZkGetxApp)利用Getx框架的App封装
 
 ## Features
 
