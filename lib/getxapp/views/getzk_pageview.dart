@@ -65,6 +65,9 @@ abstract class GetzkPageBottomNavigationBar extends StatelessWidget {
         items: barItems(context, pageCtrl.currentPage.value),
         type: BottomNavigationBarType.fixed,
         onTap: _onTap,
+        // iconSize: 18,
+        // selectedFontSize: 12,
+        // unselectedFontSize: 10,
       ),
     );
   }
